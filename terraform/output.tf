@@ -10,7 +10,7 @@ resource "local_file" "ansible_inventory" {
       ip          = aws_instance.web1.public_ip,
       ssh_keyfile = local_sensitive_file.private_key.filename
   })
-  filename = format("%s/%s", abspath(path.root), "../ansible/inventory.yaml")
+  filename = "${path.module}../ansible/inventory.yaml"
 }
 
 #output "ansible_inventory1" {
