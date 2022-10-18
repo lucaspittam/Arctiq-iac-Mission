@@ -1,7 +1,7 @@
 terraform {
   
   cloud {
-    organization = "example-org-7171dd"
+    organization = "Training1997"
 
     workspaces {
       name = "Arctiq-iac-Mission"
