@@ -41,10 +41,28 @@ resource "aws_network_interface" "interface" {
   }
 }
 
-# EC2s
+#  Data and EC2s
+data "aws_ami" "ubuntu" {
+ most_recent = true
+ filter {
+   name   = "name"
+   values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+ }
+ filter {
+   name   = "virtualization-type"
+   values = ["hvm"]
+ }
+ owners = ["099720109477"]
+}
+
 resource "aws_instance" "web1" {
-  ami           = "ami-097a2df4ac947655f"
-  instance_type = var.instance_type
+  ami                          = data.aws_ami.ubuntu.id
+  instance_type                = var.instance_type
+  key_name                     = aws_key_pair.aws_key.key_name
+  associate_public_ip_address  = true
+  subnet_id                    = aws_subnet.my_subnet.id
+  vpc_security_group_ids       = [aws_security_group.http.id, aws_security_group.ssh.id]
+
   tags = {
     Name = "web1"
     Description = "First web server that holds _____"
@@ -72,7 +90,7 @@ resource "aws_key_pair" "aws_key" {
 
 
 # Security Group
-resource "aws_security_group" "allow_http" {
+resource "aws_security_group" "http" {
  name        = "allow_http"
  description = "Allow HTTP traffic"
  vpc_id      = aws_vpc.my_vpc.id
@@ -91,7 +109,7 @@ resource "aws_security_group" "allow_http" {
  }
 }
  
-resource "aws_security_group" "allow_ssh" {
+resource "aws_security_group" "ssh" {
  name        = "allow_ssh"
  description = "Allow SSH traffic"
  vpc_id      = aws_vpc.my_vpc.id
@@ -109,15 +127,3 @@ resource "aws_security_group" "allow_ssh" {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
-
-# Output ec2 info to ansible inventory
-
-#resource "local_file" "ansible_inventory" {
- # content = templatefile("${path.module}/ansible/inventory.tmpl",
- #   {
-
- #   }
- # )
- # filename = "inventory"
-  
-#}
