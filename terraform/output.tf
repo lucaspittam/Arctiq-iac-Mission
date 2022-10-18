@@ -1,15 +1,5 @@
 # Output ec2 info to ansible inventory
 
-#resource "local_file" "ansible_inventory" {
- # content = templatefile("${path.module}/ansible/inventory.tmpl",
- #   {
-
- #   }
- # )
- # filename = "inventory"
-  
-#}
-
 resource "local_sensitive_file" "private_key" {
   content = tls_private_key.key.private_key_pem
   filename          = format("%s/%s/%s", abspath(path.root), ".ssh", "terraform1.pem")
