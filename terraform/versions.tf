@@ -1,5 +1,6 @@
 
 terraform {
+  
   cloud {
     organization = "example-org-7171dd"
 
