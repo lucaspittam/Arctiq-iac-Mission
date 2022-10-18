@@ -34,7 +34,6 @@ resource "aws_subnet" "my_subnet" {
 #Network Interface
 resource "aws_network_interface" "interface" {
   subnet_id   = aws_subnet.my_subnet.id
-  private_ips = ["172.16.10.100"]
 
   tags = {
     Name = "primary_network_interface"
@@ -59,9 +58,6 @@ resource "aws_instance" "web1" {
   ami                          = data.aws_ami.ubuntu.id
   instance_type                = var.instance_type
   key_name                     = aws_key_pair.aws_key.key_name
-  associate_public_ip_address  = true
-  subnet_id                    = aws_subnet.my_subnet.id
-  vpc_security_group_ids       = [aws_security_group.http.id, aws_security_group.ssh.id]
 
   tags = {
     Name = "web1"
@@ -69,9 +65,9 @@ resource "aws_instance" "web1" {
 
   }
 
-  network_interface {
-    network_interface_id = aws_network_interface.interface.id
-    device_index         = 0
+ network_interface {
+   network_interface_id = aws_network_interface.interface.id
+   device_index         = 0
   }
 }
 
