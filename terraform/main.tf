@@ -112,12 +112,12 @@ resource "aws_security_group" "allow_ssh" {
 
 # Output ec2 info to ansible inventory
 
-resource "local_file" "ansible_inventory" {
-  content = templatefile("${path.module}/ansible/inventory.tmpl",
-    {
+#resource "local_file" "ansible_inventory" {
+ # content = templatefile("${path.module}/ansible/inventory.tmpl",
+ #   {
 
-    }
-  )
-  filename = "inventory"
+ #   }
+ # )
+ # filename = "inventory"
   
-}
+#}
