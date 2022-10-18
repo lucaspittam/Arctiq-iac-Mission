@@ -3,11 +3,11 @@ variable "aws_region" {
   default = "us-east-2"
 }
 
-variable "aws_access_key" {
+variable "AWS_ACCESS_KEY_ID" {
   type = string
   default = ""
 }
-variable "aws_secret_key" {
+variable "AWS_SECRET_ACCESS_KEY" {
   type = string
   default = ""
 }
