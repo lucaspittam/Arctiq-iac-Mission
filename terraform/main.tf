@@ -17,7 +17,7 @@ resource "aws_vpc" "my_vpc" {
 resource "aws_subnet" "my_subnet" {
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "172.16.10.0/24"
-  availability_zone = "us-east-2"
+  availability_zone = "us-east-2b"
 
   tags = {
     Name = "tf-example"
@@ -43,7 +43,7 @@ resource "aws_instance" "web1" {
   instance_type = "t2.micro"
 
   network_interface {
-    network_interface_id = aws_network_interface.web1.id
+    network_interface_id = aws_network_interface.foo.id
     device_index         = 0
   }
 
