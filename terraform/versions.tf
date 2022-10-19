@@ -1,6 +1,7 @@
 
 terraform {
 
+
   cloud {
       organization = "Training1997"
 
