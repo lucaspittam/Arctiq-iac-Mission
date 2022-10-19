@@ -1,14 +1,4 @@
-terraform {
-  
-  cloud {
-    organization = "Training1997"
 
-    workspaces {
-      name = "Arctiq-iac-Mission"
-    }
-  }
-
-}
 # AWS Provider
 provider "aws" {
   region     = var.aws_region
