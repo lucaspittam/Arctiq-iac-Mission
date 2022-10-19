@@ -1,3 +1,4 @@
+---
 - hosts: Terraform_server
   become: yes
   tasks:
