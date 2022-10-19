@@ -9,11 +9,7 @@ data "aws_region" "current" {}
 
 # VPC   
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "172.16.0.0/16"
-
-  tags = {
-    Name = "tf-example"
-  }
+  cidr_block = "10.0.0.0/16"
 }
 
 #Internet Gateway
@@ -28,7 +24,18 @@ resource "aws_subnet" "my_subnet" {
   availability_zone = "${data.aws_region.current.name}b"
 }
 
-
+resource "aws_route_table" "route_table" {
+ vpc_id = aws_vpc.my_vpc.id
+ route {
+   cidr_block = "0.0.0.0/0"
+   gateway_id = aws_internet_gateway.gw.id
+ }
+}
+ 
+resource "aws_route_table_association" "route_table_association" {
+ subnet_id      = aws_subnet.my_subnet.id
+ route_table_id = aws_route_table.route_table.id
+}
 
 #  Data and EC2s
 data "aws_ami" "ubuntu" {
@@ -44,22 +51,6 @@ data "aws_ami" "ubuntu" {
  owners = ["099720109477"]
 }
 
-resource "aws_instance" "web1" {
-  ami                          = data.aws_ami.ubuntu.id
-  instance_type                = var.instance_type
-  key_name                     = aws_key_pair.aws_key.key_name
-  associate_public_ip_address  = true
-
-  tags = {
-    Name = "web1"
-    Description = "First web server that holds _____"
-
-  }
-
-
-}
-
-
 #Private Key
 resource "tls_private_key" "key" {
  algorithm = "RSA"
@@ -71,7 +62,6 @@ resource "aws_key_pair" "aws_key" {
  key_name   = "ssh-key"
  public_key = tls_private_key.key.public_key_openssh
 }
-
 
 # Security Group
 resource "aws_security_group" "http" {
@@ -111,3 +101,21 @@ resource "aws_security_group" "ssh" {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
+
+resource "aws_instance" "web1" {
+  ami                          = data.aws_ami.ubuntu.id
+  instance_type                = var.instance_type
+  key_name                     = aws_key_pair.aws_key.key_name
+  associate_public_ip_address  = true
+  subnet_id                    = aws_subnet.my_subnet.id
+ vpc_security_group_ids        = [aws_security_group.http.id, aws_security_group.ssh.id]
+
+  tags = {
+    Name = "web1"
+  }
+}
+
+
+
+
+
