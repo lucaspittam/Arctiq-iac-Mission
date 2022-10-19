@@ -1,10 +1,12 @@
+
 terraform {
   cloud {
     organization = "Training1997"
+ 
+    hostname = "app.terraform.io"
 
     workspaces {
-      name = "Arctiq-iac-Mission"
+      tags = ["Arctiq-iac-Mission"]
     }
   }
-
 }
