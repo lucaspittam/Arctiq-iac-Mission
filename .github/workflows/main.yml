@@ -68,11 +68,10 @@ jobs:
 
       
       - name: Run Ansible Playbook
-        uses: dawidd6/action-ansible-playbook@v2
+        uses: saubermacherag/ansible-playbook-docker-action@v1.4
         with:
-          playbook: nginx.yml
-          directory: ./ansible
-          inventory: ./ansible/inventory.yaml
+          playbookName: 'nginx.yml'
+          inventoryFile: 'inventory.yaml'
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
           ANSIBLE_DEPRECATION_WARNINGS: 'false'
