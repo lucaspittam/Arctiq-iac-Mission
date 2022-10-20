@@ -63,8 +63,6 @@ jobs:
       with:
         playbook: ansible/nginx.yml
         inventory: ansible/inventory.yaml
-        private_key: ansible/ssh-key.pem
-        user: ubuntu
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'false'
         ANSIBLE_DEPRECATION_WARNINGS: 'false'  
