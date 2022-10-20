@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
+  Terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
@@ -59,9 +59,15 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
 
-  notify:
-    needs: terraform
+  Ansible:
+    needs: Terraform
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./ansible
+        shell: bash
+        
     steps:
       - uses: actions/checkout@v3
 
@@ -69,8 +75,8 @@ jobs:
       - name: Run Ansible Playbook
         uses: arillso/action.playbook@master
         with:
-          playbook: ./ansible/nginx.yml
-          inventory: ./ansible/inventory.yaml
+          playbook: nginx.yml
+          inventory: inventory.yaml
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
           ANSIBLE_DEPRECATION_WARNINGS: 'false'
