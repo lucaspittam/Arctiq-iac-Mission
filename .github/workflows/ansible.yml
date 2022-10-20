@@ -5,27 +5,18 @@ on:
     types:
       - completed
 
-
 jobs:
   notify:
     runs-on: ubuntu-latest
-  #  defaults:
-     # run:
-     #   working-directory: ./ansible
     steps:
       - uses: actions/checkout@v3
 
-      - name: change directory
-        run: |
-          cd ../../ansible
       
       - name: Run Ansible Playbook
         uses: arillso/action.playbook@master
         with:
-          playbook: nginx.yml
-          inventory: inventory.yml
+          playbook: ./ansible/nginx.yml
+          inventory: ./ansible/inventory.yaml
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
           ANSIBLE_DEPRECATION_WARNINGS: 'false'
-
-   
