@@ -46,21 +46,23 @@ jobs:
         aws-secret-access-key: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
         aws-region: '${{ secrets.AWS_REGION }}'
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    # Initialize a new or existing Terraform working directory
     - name: Terraform Init
       run: terraform init
+      
       # validate config plan
     - name: Terraform Validate
       run: terraform validate
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+      id: plan
       run: terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+      if: setps.plan.outcome == 'success'
       run: terraform apply -auto-approve -input=false
 
 ##
