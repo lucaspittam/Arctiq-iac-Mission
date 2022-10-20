@@ -59,11 +59,12 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
     - name: Run Ansible Playbook
-      uses: saubermacherag/ansible-playbook-docker-action@v1.4
+      uses: arillso/action.playbook@0.0.5
       with:
-        playbookName: 'ansible/nginx.yml'
-        inventoryFile: 'ansible/inventory.yaml'
-        keyFile: "ansible/ssh-key.pem"
+        playbook: ansible/nginx.yml
+        inventory: ansible/inventory.yaml
+        private_key: ansible/ssh-key.pem
+        user: ubuntu
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'false'
         ANSIBLE_DEPRECATION_WARNINGS: 'false'  
