@@ -70,8 +70,9 @@ jobs:
       - name: Run Ansible Playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
         with:
-          playbookName: 'nginx.yml'
-          inventoryFile: 'inventory.yaml'
+          playbookName: 'ansible/nginx.yml'
+          inventoryFile: 'ansible/inventory.yaml'
+          keyFile: "ansible/ssh-key.pem"
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
           ANSIBLE_DEPRECATION_WARNINGS: 'false'
