@@ -63,7 +63,7 @@ jobs:
       with:
         playbookName: 'ansible/nginx.yml'
         inventoryFile: 'ansible/inventory.yaml'
-        keyFile: "ssh-key.pem"
+        keyFile: "terraform/ssh-key.pem"
         verbosity: "vvvv"
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'false'
