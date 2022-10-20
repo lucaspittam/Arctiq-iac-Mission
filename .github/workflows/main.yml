@@ -68,9 +68,10 @@ jobs:
 
       
       - name: Run Ansible Playbook
-        uses: arillso/action.playbook@master
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: ../ansible/nginx.yml
+          playbook: nginx.yml
+          directory: ./ansible
           inventory: inventory.yaml
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
