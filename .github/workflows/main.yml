@@ -72,7 +72,7 @@ jobs:
         with:
           playbook: nginx.yml
           directory: ./ansible
-          inventory: inventory.yaml
+          inventory: ./ansible/inventory.yaml
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'false'
           ANSIBLE_DEPRECATION_WARNINGS: 'false'
