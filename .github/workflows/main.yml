@@ -1,5 +1,5 @@
 
-name: 'Terraform'
+name: 'Create_and_Provision'
 
 on:
   push:
@@ -63,7 +63,7 @@ jobs:
       with:
         playbookName: 'ansible/nginx.yml'
         inventoryFile: 'ansible/inventory.yaml'
-        keyFile: "ansible/ssh-key.pem"
+        keyFile: "ssh-key.pem"
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'false'
         ANSIBLE_DEPRECATION_WARNINGS: 'false'  
