@@ -1,0 +1,24 @@
+name: ansible
+on:
+  workflow_run:
+    workflows: ["Terraform"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      
+      - name: Run Ansible Playbook
+        uses: arillso/action.playbook@master
+        with:
+          playbook: ./ansible/nginx.yml
+          inventory: ./ansible/inventory.yml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: 'false'
+          ANSIBLE_DEPRECATION_WARNINGS: 'false'
+
+   
