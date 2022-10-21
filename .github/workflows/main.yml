@@ -71,10 +71,13 @@ jobs:
      #   ANSIBLE_DEPRECATION_WARNINGS: 'false' 
      
      
-    - name: Sleep for 30 seconds
-      uses: jakejarvis/wait-action@master
+    - name: Sleep Action
+  # You may pin to the exact commit or the version.
+  # uses: juliangruber/sleep-action@61b118a54bde77a381ddb5190a0d13ee2d056410
+      uses: juliangruber/sleep-action@v1.0.1
       with:
-        time: '10s' 
+    # A time period as ms or string (100, 10s, 1m)
+        time: 10s
   
  
     - name: Run playbook
