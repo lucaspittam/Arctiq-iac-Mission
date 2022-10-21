@@ -76,8 +76,8 @@ jobs:
           # Optional, directory where playbooks live
           directory: ./ansible
           # Optional, SSH private key
-          key: ansible/ssh-key.pem
+          key: ssh-key.pem
           options: |
-            --inventory ansible/inventory.yaml
+            --inventory inventory.yaml
             --verbose
 
