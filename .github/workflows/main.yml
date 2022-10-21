@@ -12,7 +12,7 @@ permissions:
 jobs:
   Terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -59,19 +59,16 @@ jobs:
       if: steps.plan.outcome == 'success'
       run: terraform apply -auto-approve -input=false
 
-  #  - name: Run Ansible Playbook
-   #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
-    #  with:
-     #   playbookName: 'ansible/nginx.yml'
-      #  inventoryFile: 'ansible/inventory.yaml'
-       # keyFile: 'ansible/ssh-key.pem'
-        #verbosity: "vvvv"
-      #env:
-       # ANSIBLE_HOST_KEY_CHECKING: 'false'
-        #ANSIBLE_DEPRECATION_WARNINGS: 'false'  
-    - name: Run Ansible Playbook   
-      uses: tomasnorre/ansible-cli-client@0.0.2
+    - name: Run Ansible Playbook
+      uses: saubermacherag/ansible-playbook-docker-action@v1.4
       with:
-        command: "ansible-playbook ansible/nginx.yml -i ansible/inventory.yaml --key-file ansible/ssh-key.pem"
+        playbookName: 'ansible/nginx.yml'
+        inventoryFile: 'ansible/inventory.yaml'
+        keyFile: 'ansible/ssh-key.pem'
+        verbosity: "vvvv"
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: 'false'
+        ANSIBLE_DEPRECATION_WARNINGS: 'false'  
+ 
 
 
