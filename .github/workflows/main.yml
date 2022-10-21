@@ -72,6 +72,7 @@ jobs:
  
     - name: Run playbook
       uses: dawidd6/action-ansible-playbook@v2
+      if: steps.apply.outcome == 'success'
       with:
            # playbook filepath
           playbook: nginx.yml
