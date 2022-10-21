@@ -70,7 +70,7 @@ jobs:
        # ANSIBLE_HOST_KEY_CHECKING: 'false'
         #ANSIBLE_DEPRECATION_WARNINGS: 'false'  
     - name: Run Ansible Playbook   
-      uses: tomasnorre/ansible-cli-action@0.0.5
+      uses: tomasnorre/ansible-cli-client@0.0.2
       with:
         command: "ansible-playbook ansible/nginx.yml -i ansible/inventory.yaml --key-file ansible/ssh-key.pem"
 
