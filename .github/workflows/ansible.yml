@@ -7,16 +7,21 @@ on:
 
 jobs:
   notify:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
 
       
-      - name: Run Ansible Playbook
-        uses: arillso/action.playbook@master
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        if: steps.apply.outcome == 'success'
         with:
-          playbook: ./ansible/nginx.yml
-          inventory: ./ansible/inventory.yaml
-        env:
-          ANSIBLE_HOST_KEY_CHECKING: 'false'
-          ANSIBLE_DEPRECATION_WARNINGS: 'false'
+           # playbook filepath
+          playbook: nginx.yml
+          # Optional, directory where playbooks live
+          directory: ./ansible
+          # Optional, SSH private key
+          key: ssh-key.pem
+          options: |
+            --inventory inventory.yaml
+            --verbose
