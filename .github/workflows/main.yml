@@ -69,6 +69,10 @@ jobs:
    #   env:
     #    ANSIBLE_HOST_KEY_CHECKING: 'false'
      #   ANSIBLE_DEPRECATION_WARNINGS: 'false'  
+     
+    - name: Sleep for 30 seconds
+      run: sleep 30s
+      shell: bash 
  
     - name: Run playbook
       uses: dawidd6/action-ansible-playbook@v2
