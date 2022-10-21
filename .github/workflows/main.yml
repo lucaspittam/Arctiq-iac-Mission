@@ -59,16 +59,27 @@ jobs:
       if: steps.plan.outcome == 'success'
       run: terraform apply -auto-approve -input=false
 
-    - name: Run Ansible Playbook
-      uses: saubermacherag/ansible-playbook-docker-action@v1.4
-      with:
-        playbookName: 'ansible/nginx.yml'
-        inventoryFile: 'ansible/inventory.yaml'
-        keyFile: 'ansible/ssh-key.pem'
-        verbosity: "vvvv"
-      env:
-        ANSIBLE_HOST_KEY_CHECKING: 'false'
-        ANSIBLE_DEPRECATION_WARNINGS: 'false'  
+   # - name: Run Ansible Playbook
+   #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
+   #   with:
+   #     playbookName: 'ansible/nginx.yml'
+   #     inventoryFile: 'ansible/inventory.yaml'
+   #     keyFile: 'ansible/ssh-key.pem'
+   #     verbosity: "vvvv"
+   #   env:
+    #    ANSIBLE_HOST_KEY_CHECKING: 'false'
+     #   ANSIBLE_DEPRECATION_WARNINGS: 'false'  
  
-
+    - name: Run playbook
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+           # playbook filepath
+          playbook: nginx.yml
+          # Optional, directory where playbooks live
+          directory: ./ansible
+          # Optional, SSH private key
+          key: ssh-key.pem
+          options: |
+            --inventory inventory.yaml
+            --verbose
 
