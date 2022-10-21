@@ -1,9 +1,6 @@
 name: ansible
 on:
-  workflow_run:
-    workflows: ["Terraform"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   notify:
@@ -14,7 +11,6 @@ jobs:
       
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
-        if: steps.apply.outcome == 'success'
         with:
            # playbook filepath
           playbook: nginx.yml
