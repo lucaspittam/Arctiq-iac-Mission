@@ -24,6 +24,8 @@ resource "aws_subnet" "my_subnet" {
   availability_zone = "${data.aws_region.current.name}b"
 }
 
+# Route Table
+
 resource "aws_route_table" "route_table" {
  vpc_id = aws_vpc.my_vpc.id
  route {
@@ -31,13 +33,13 @@ resource "aws_route_table" "route_table" {
    gateway_id = aws_internet_gateway.gw.id
  }
 }
- 
+ # Route Table Association 
 resource "aws_route_table_association" "route_table_association" {
  subnet_id      = aws_subnet.my_subnet.id
  route_table_id = aws_route_table.route_table.id
 }
 
-#  Data and EC2s
+#  Data for Ami on EC2s
 data "aws_ami" "ubuntu" {
  most_recent = true
  filter {
@@ -63,7 +65,7 @@ resource "aws_key_pair" "aws_key" {
  public_key = tls_private_key.key.public_key_openssh
 }
 
-# Security Group
+# Security Group for http
 resource "aws_security_group" "http" {
  name        = "allow_http"
  description = "Allow HTTP traffic"
@@ -82,7 +84,8 @@ resource "aws_security_group" "http" {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
- 
+
+# Security Group for http 
 resource "aws_security_group" "ssh" {
  name        = "allow_ssh"
  description = "Allow SSH traffic"
@@ -101,7 +104,7 @@ resource "aws_security_group" "ssh" {
    cidr_blocks = ["0.0.0.0/0"]
  }
 }
-
+# EC2 Instance
 resource "aws_instance" "web1" {
   ami                          = data.aws_ami.ubuntu.id
   instance_type                = var.instance_type
