@@ -4,7 +4,7 @@
 ## Super Linter GitHub Actions ##
 #################################
 #################################
-name: simple Lint Code Base
+name: Lint
 
 on:
   push:
