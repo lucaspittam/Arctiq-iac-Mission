@@ -12,7 +12,7 @@ permissions:
 jobs:
   Terraform:
     name: 'Terraform'
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -44,12 +44,12 @@ jobs:
       run: terraform init
       
     
-   # Destroy existing infrastructure (If there is any)   
+      # Destroy existing infrastructure (If there is any)   
     - name: Terraform Destroy
       run: terraform destroy -auto-approve -input=false  
       
       
-      # validate config plan
+      # Validate config plan
     - name: Terraform Validate
       run: terraform validate
 
@@ -64,24 +64,11 @@ jobs:
       if: steps.plan.outcome == 'success'
       run: terraform apply -auto-approve -input=false
 
-   # - name: Run Ansible Playbook
-   #   uses: saubermacherag/ansible-playbook-docker-action@v1.4
-   #   with:
-   #     playbookName: 'ansible/nginx.yml'
-   #     inventoryFile: 'ansible/inventory.yaml'
-   #     keyFile: 'ansible/ssh-key.pem'
-   #     verbosity: "vvvv"
-   #   env:
-    #    ANSIBLE_HOST_KEY_CHECKING: 'false'
-     #   ANSIBLE_DEPRECATION_WARNINGS: 'false' 
-     
-     
-    - name: Sleep Action
-  # You may pin to the exact commit or the version.
-  # uses: juliangruber/sleep-action@61b118a54bde77a381ddb5190a0d13ee2d056410
+    # Delay
+    - name: Delay
       uses: juliangruber/sleep-action@v1.0.1
       with:
-    # A time period as ms or string (100, 10s, 1m)
+    # Time period as ms or string
         time: 10s
   
  
@@ -90,10 +77,10 @@ jobs:
       if: steps.apply.outcome == 'success'
       with:
            # playbook filepath
-          playbook: nginx.yml
-          # Optional, directory where playbooks live
+          playbook: playbook.yml
+          # directory where playbooks live
           directory: ./ansible
-          # Optional, SSH private key
+          # SSH private key
           key: ssh-key.pem
           options: |
             --inventory inventory.yaml
