@@ -1,7 +1,15 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    - Message1: How are you Today?
+
+  pre_tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt install -y python2-minimal) 
+
   tasks:
+
   - name: "apt-get update"
     apt:
       update_cache: yes
@@ -30,7 +38,17 @@
       name: ['nginx']
       state: latest
       update_cache: yes
-  
+
+  - name: Delete existing file
+    file:
+        path: /var/www/html/index.nginx-debian.html
+        state: absent
+
+  - name: Enable new site
+    template:
+      src: index.nginx-debian.html.j2
+      dest: /var/www/html/index.nginx-debian.html
+    
   handlers:
     - name: restart nginx
       service:
