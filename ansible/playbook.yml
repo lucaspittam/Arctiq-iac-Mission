@@ -4,10 +4,6 @@
   vars:
     - Message1: How are you Today?
 
-  pre_tasks:
-  - name: install python 2
-    raw: test -e /usr/bin/python || (apt install -y python2-minimal) 
-
   tasks:
 
   - name: "apt-get update"
