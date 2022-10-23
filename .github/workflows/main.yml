@@ -3,7 +3,7 @@ name: 'Create_and_Provision'
 
 on:
   workflow_run:
-    workflows: ["Create_and_Provision"]
+    workflows: ["Lint"]
     types:
       - completed
 
