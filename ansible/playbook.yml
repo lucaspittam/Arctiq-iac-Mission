@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: "apt-get update"
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+  
+  - name: Install nodejs
+    apt:
+      update_cache: yes
+      name: nodejs
+      state: present
+
+  - name: Install git
+    apt:
+      name: git
+      state: present
+      update_cache: yes
+        
+  - name: Install npm
+    apt:
+      name: npm
+      state: present
+      update_cache: yes
+
+  - name: Install nginx
+    apt:
+      name: ['nginx']
+      state: latest
+      update_cache: yes
+  
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
