@@ -2,9 +2,10 @@
 name: 'Create_and_Provision'
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+  workflow_run:
+    workflows: ["Create_and_Provision"]
+    types:
+      - completed
 
 permissions:
   contents: read
