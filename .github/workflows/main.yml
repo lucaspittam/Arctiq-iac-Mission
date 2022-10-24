@@ -1,11 +1,7 @@
 
 name: 'Create_and_Provision'
 
-on:
-  workflow_run:
-    workflows: ["Lint"]
-    types:
-      - completed
+on: [push]
 
 permissions:
   contents: read
