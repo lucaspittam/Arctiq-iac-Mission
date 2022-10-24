@@ -81,7 +81,7 @@ resource "aws_route_table" "route_table" {
 
  }
     tags = {
-    Name = "project-rt"
+    Name = "route table"
   }
 }
  # Route Table Association 
@@ -154,7 +154,7 @@ resource "aws_security_group" "private_security" {
 # Security group for ALB
 resource "aws_security_group" "alb_sg" {
   name        = "alb-sg"
-  description = "security group for alb"
+  description = "security group for load balancer"
   vpc_id      = aws_vpc.my_vpc.id
 
   ingress {
