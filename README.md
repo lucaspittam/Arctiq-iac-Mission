@@ -17,17 +17,9 @@
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/lucaspittam/Arctiq-iac_Mission"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/lucaspittam/Arctiq-iac_Mission">View Demo</a>
-    ·
-    <a href="https://github.com/lucaspittam/Arctiq-iac_Mission/issues">Report Bug</a>
-    ·
     <a href="https://github.com/lucaspittam/Arctiq-iac_Mission/issues">Request Feature</a>
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -65,10 +57,10 @@
 
 ### Built With
 
-#Terraform
-#Ansible
-#AWS
-#GitHub Actions
+* # Terraform
+* # Ansible
+* # AWS
+* # GitHub Actions
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -77,32 +69,31 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This Project sets up:
 
-### Prerequisites
+* A VPC
+* Two private subnets
+* Two public subnet
+* An internet gateway
+* Route Table
+* An internet gateway
+* 2 security groups
+* An SSH key pair
+* Two publicly-accessible EC2 instances
+* Within the instance:
+   * Nginx
+   * npm
+   * node
+   * git
+ 
+ 
+## Setup
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+1. Set up Terraform Cloud Credentials
 
-### Installation
+1. Set up AWS credentials in [`~/.aws/credentials`](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files).
+    * The easiest way to do so is by [setting up the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
