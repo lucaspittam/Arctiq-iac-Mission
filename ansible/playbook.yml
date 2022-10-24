@@ -10,12 +10,6 @@
     apt:
       update_cache: yes
       cache_valid_time: 3600
-  
-  - name: Install nodejs
-    apt:
-      update_cache: yes
-      name: nodejs
-      state: present
 
   - name: Install git
     apt:
