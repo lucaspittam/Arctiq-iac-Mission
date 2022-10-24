@@ -65,13 +65,15 @@
 This Project sets up:
 
 * A VPC
+* * An internet gateway
 * Two private subnets
 * Two public subnet
-* An internet gateway
 * Route Table
-* An internet gateway
+* load Balancer
 * 2 security groups
 * An SSH key pair
+* Private Key
+* Database Instance
 * Two publicly-accessible EC2 instances
 * Within the instance:
    * Nginx
