@@ -4,7 +4,6 @@
 <!-- Arctiq Iac Mission -->
 <!--
 -->
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -145,7 +144,7 @@ Project Link: [https://github.com/lucaspittam/Arctiq-iac-Mission](https://github
 [license-shield]: https://img.shields.io/github/license/lucaspittam/Arctiq-iac-Mission.svg?style=for-the-badge
 [license-url]: https://github.com/lucaspittam/Arctiq-iac-Mission/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/lucaspittam
+[linkedin-url]: https://linkedin.com/in/lucaspittam](https://www.linkedin.com/in/lucas-pittam-3209bb22b/)
 [product-screenshot]: images/screenshot.png
 [Terraform]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Ansible]: https://nextjs.org/
