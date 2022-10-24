@@ -16,9 +16,7 @@
 
   <p align="center">
     Terraform-Ansible-AWS
-    <br />
-    <a href="https://github.com/lucaspittam/Arctiq-iac_Mission/issues">Request Feature</a>
-  </p>
+    </p>
 </div>
 
 
@@ -48,7 +46,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## This project was built as a demo with the goal of leveraging Terraform and Ansible tooling to automate the creating and provisioning of AWS multi tier infrastructure and also using Github Actions for CI/CD. 
+## This project was built as a demo with the goal of leveraging Terraform and Ansible tooling to automate the creating and provisioning of AWS multi tier infrastructure and also using Github Actions for CI/CD. Thank you For Supporting!
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -93,7 +91,9 @@ This Project sets up:
 
 1. Set up AWS Credentials
 
-1. Enter AWS Credentials on GitHub Repo As Environment Variables
+1. Enter AWS Credentials and Terraform Cloud API Key on GitHub Repo As Environment Variables
+
+1. Enter aws_region and t2_instance as repo secrets
 
 1. Edit versions.tf in Torraform folder with created Organization and Workspace.
 
@@ -112,7 +112,7 @@ This Project sets up:
 }
 ```
 
-
+###  Push to main to run
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
