@@ -27,10 +27,6 @@
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
@@ -65,11 +61,11 @@
 This Project sets up:
 
 * A VPC
-* * An internet gateway
+* An internet gateway
 * Two private subnets
 * Two public subnet
 * Route Table
-* load Balancer
+* Load Balancer
 * 2 security groups
 * An SSH key pair
 * Private Key
