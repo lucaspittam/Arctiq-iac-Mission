@@ -15,7 +15,7 @@
 <h3 align="center">Arctiq IAC Mission</h3>
 
   <p align="center">
-    project_description
+    Terraform-Ansible-AWS
     <br />
     <a href="https://github.com/lucaspittam/Arctiq-iac_Mission/issues">Request Feature</a>
   </p>
@@ -48,7 +48,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## This project was built as a demo with the goal of leveraging Terraform and Ansible tooling to autoamte the creating and provisioning of AWS multi tier infrastructure . 
+## This project was built as a demo with the goal of leveraging Terraform and Ansible tooling to automate the creating and provisioning of AWS multi tier infrastructure and also using Github Actions for CI/CD. 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -57,10 +57,10 @@
 
 ### Built With
 
-* # Terraform
-* # Ansible
-* # AWS
-* # GitHub Actions
+* ## Terraform
+* ## Ansible
+* ## AWS
+* ## GitHub Actions
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,8 +91,27 @@ This Project sets up:
 
 1. Set up Terraform Cloud Credentials
 
-1. Set up AWS credentials in [`~/.aws/credentials`](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files).
-    * The easiest way to do so is by [setting up the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html).
+1. Set up AWS Credentials
+
+1. Enter AWS Credentials on GitHub Repo As Environment Variables
+
+1. Edit versions.tf in Torraform folder with created Organization and Workspace.
+
+
+ ```sh
+ terraform {
+
+  cloud {
+      organization = "Your Organization Here"
+
+      workspaces {
+        name = "Your Workspace Here"
+      }
+    }
+  
+}
+```
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
