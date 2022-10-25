@@ -287,7 +287,7 @@ resource "aws_db_instance" "project_db" {
   allocated_storage    = 5
   engine               = "mysql"
   engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
+  instance_class       = "db.t2.micro"
   identifier           = "db-instance"
   db_name              = "project_db"
   username             = "admin"
@@ -297,6 +297,10 @@ resource "aws_db_instance" "project_db" {
   publicly_accessible = false
   skip_final_snapshot  = true
 }
+
+tags = {
+    Name = "project_db"
+  }
 
 
 

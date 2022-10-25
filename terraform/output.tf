@@ -8,6 +8,7 @@ resource "local_file" "ansible_inventory" {
   content         = templatefile("inventory.tmpl", {
       ip1          = aws_instance.web1.public_ip,
       ip2          = aws_instance.web2.public_ip,
+      ip3          = aws_db_instance.project_db.public_ip,
       ssh_keyfile = local_sensitive_file.private_key.filename
   })
   filename = "${path.module}./ansible/inventory.yaml"
