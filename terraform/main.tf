@@ -296,11 +296,10 @@ resource "aws_db_instance" "project_db" {
   vpc_security_group_ids = [aws_security_group.private_security.id]  
   publicly_accessible = false
   skip_final_snapshot  = true
-}
 
 tags = {
     Name = "project_db"
   }
-
+}
 
 
