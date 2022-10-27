@@ -5,9 +5,10 @@ resource "local_sensitive_file" "private_key" {
   file_permission   = "0600"
 }
 resource "local_file" "ansible_inventory" {
-  content         = templatefile("inventory.tmpl", {
+  content          = templatefile("inventory.tmpl", {
       ip1          = aws_instance.web1.public_ip,
       ip2          = aws_instance.web2.public_ip,
+      rds_endpoint = aws_db_instance.project_db.endpoint,
       ssh_keyfile = local_sensitive_file.private_key.filename
   })
   filename = "${path.module}./ansible/inventory.yaml"

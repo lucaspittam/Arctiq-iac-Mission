@@ -34,53 +34,22 @@
       name: pm2
       global: yes
 
-  - name: Install nginx
-    apt:
-      name: ['nginx']
-      state: latest
-      update_cache: yes
-
-  - name: Delete existing file
-    file:
-        path: /var/www/html/index.nginx-debian.html
-        state: absent
-    
-  - name: restart nginx
-    service:
-        name: nginx
-        state: restarted
-
   - name: Clone a github repository
     git:
        repo: https://github.com/lucaspittam/node-graphql-react-chat-app.git
-       dest: /var/www/html
+       dest: /home/ubuntu/repo
        clone: yes
        update: yes
        force: yes
-  
+
   - name: Go to Repo folder and npm install
     command:
-      chdir: /var/www/html
+      chdir: /home/ubuntu/repo
       cmd:  npm install
 
-
-  - name: Go to  Repo folder and npm run build
+  - name: Go to Repo/Client folder and npm install
     command:
-      chdir: /var/www/html
-      cmd:  sudo npm run build
+      chdir: /home/ubuntu/repo/client
+      cmd:  sudo npm install
 
-  - name: Go to  Repo folder and npm start
-    command:
-      chdir: /var/www/html
-      cmd:  sudo npm start
 
-  
- # - name:  npm init
-  #  command:
-   #   chdir: /var/www/html/frontend/build 
-    #  cmd:  npm init -y
-  
- # - name:  Start
-  #  command:
-   #   chdir: /var/www/html/frontend/build 
-    #  cmd:  npm run index.js
