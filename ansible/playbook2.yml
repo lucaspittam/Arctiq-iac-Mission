@@ -109,6 +109,16 @@
       chdir: /home/ubuntu/repo
       cmd: sudo npm install -g sequelize-cli  
 
+  - name: Sequelize Cli Command( db:create )
+    command:
+      chdir: /home/ubuntu/repo
+      cmd: sequelize db:create
+
+  - name: Sequelize Cli Command( db:migrate )
+    command:
+      chdir: /home/ubuntu/repo
+      cmd: sequelize db:migrate
+
   - name: Go to Repo & Start Server
     command:
       chdir: /home/ubuntu/repo
