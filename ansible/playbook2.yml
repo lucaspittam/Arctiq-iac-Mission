@@ -1,0 +1,132 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    - Message1: How are you Today?
+
+  tasks:
+
+  - name: "apt-get update"
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: Install git
+    apt:
+      name: git
+      state: present
+      update_cache: yes
+        
+  - name: Install npm
+    apt:
+      name: npm
+      state: present
+      update_cache: yes
+
+  - name: Install Nodejs
+    apt:
+      name: nodejs
+      state: present
+      update_cache: yes
+
+  - name: Install nginx
+    apt:
+      name: ['nginx']
+      state: latest
+      update_cache: yes
+
+  - name: Delete existing file
+    file:
+        path: /var/www/html/index.nginx-debian.html
+        state: absent
+    
+  - name: restart nginx
+    service:
+        name: nginx
+        state: restarted
+    
+  - name: Install pm2
+    npm:
+      name: pm2
+      global: yes
+
+  - name: Clone a github repository
+    git:
+       repo: https://github.com/lucaspittam/node-graphql-react-chat-app.git
+       dest: /home/ubuntu/repo
+       clone: yes
+       update: yes
+       force: yes
+
+  - name: copy env file to Repo
+    copy:
+      src: ../ansible/.env
+      dest:  /home/ubuntu/repo
+
+  - name: Go to Repo folder and npm install
+    command:
+      chdir: /home/ubuntu/repo
+      cmd:  npm install
+
+  - name: Go to Repo/Client folder and npm install
+    command:
+      chdir: /home/ubuntu/repo/client
+      cmd:  sudo npm install
+
+  - name: Go to Repo/Client folder and npm run build
+    command:
+      chdir: /home/ubuntu/repo/client
+      cmd:  sudo npm run build
+  
+  - name: copy build file to nginx
+    copy:
+      src: /home/ubuntu/repo/client/build/
+      dest:  /var/www/html
+      remote_src: yes
+
+  - name: Delete existing file
+    file:
+        path: /etc/nginx/sites-available/default
+        state: absent
+
+  - name: copy default file to nginx config
+    copy:
+      src: ../ansible/default
+      dest:  /etc/nginx/sites-available/
+
+  - name: restart nginx
+    service:
+        name: nginx
+        state: restarted
+
+  - name: Go to Repo Install Sequelize
+    command:
+      chdir: /home/ubuntu/repo
+      cmd: sudo npm install sequelize sqlite3
+
+  - name: Go to Repo Install sequeliqe-cli
+    command:
+      chdir: /home/ubuntu/repo
+      cmd: sudo npm install -g sequelize-cli  
+
+  - name: Go to Repo & Start Server
+    command:
+      chdir: /home/ubuntu/repo
+      cmd: pm2 start server.js --name "server"
+
+      
+
+
+
+
+
+
+ # - name: Go to Repo Install mysql
+  #  command:
+   #   chdir: /home/ubuntu/repo
+    #  cmd: sudo apt install mariadb-client-core-10.3
+
+
+# sequelize db:create
+# sequelize db:migrate
+# sequeliqe db:seed:all

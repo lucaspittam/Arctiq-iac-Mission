@@ -23,6 +23,17 @@
       state: present
       update_cache: yes
 
+  - name: Install Nodejs
+    apt:
+      name: nodejs
+      state: present
+      update_cache: yes
+    
+  - name: Install pm2
+    npm:
+      name: pm2
+      global: yes
+
   - name: Install nginx
     apt:
       name: ['nginx']
@@ -33,14 +44,43 @@
     file:
         path: /var/www/html/index.nginx-debian.html
         state: absent
-
-  - name: Enable new site
-    template:
-      src: index.nginx-debian.html.j2
-      dest: /var/www/html/index.nginx-debian.html
     
-  handlers:
-    - name: restart nginx
-      service:
+  - name: restart nginx
+    service:
         name: nginx
         state: restarted
+
+  - name: Clone a github repository
+    git:
+       repo: https://github.com/lucaspittam/node-graphql-react-chat-app.git
+       dest: /var/www/html
+       clone: yes
+       update: yes
+       force: yes
+  
+  - name: Go to Repo folder and npm install
+    command:
+      chdir: /var/www/html
+      cmd:  npm install
+
+
+  - name: Go to  Repo folder and npm run build
+    command:
+      chdir: /var/www/html
+      cmd:  sudo npm run build
+
+  - name: Go to  Repo folder and npm start
+    command:
+      chdir: /var/www/html
+      cmd:  sudo npm start
+
+  
+ # - name:  npm init
+  #  command:
+   #   chdir: /var/www/html/frontend/build 
+    #  cmd:  npm init -y
+  
+ # - name:  Start
+  #  command:
+   #   chdir: /var/www/html/frontend/build 
+    #  cmd:  npm run index.js
