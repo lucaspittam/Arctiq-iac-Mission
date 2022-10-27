@@ -74,7 +74,7 @@ jobs:
       if: steps.apply.outcome == 'success'
       with:
            # playbook filepath
-          playbook: playbook.yml
+          playbook: playbook2.yml
           # directory where playbooks live
           directory: ./ansible
           # SSH private key
