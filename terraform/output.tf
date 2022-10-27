@@ -13,3 +13,10 @@ resource "local_file" "ansible_inventory" {
   })
   filename = "${path.module}./ansible/inventory.yaml"
 }
+
+resource "local_file" "env_file_database" {
+  content          = templatefile(".env.example.tmpl", {
+      rds_endpoint = aws_db_instance.project_db.endpoint,
+  })
+  filename = "${path.module}./ansible/.env"
+}
