@@ -1,9 +1,6 @@
 ---
 - hosts: all
   become: yes
-  vars:
-    - Message1: How are you Today?
-
   tasks:
 
   - name: "apt-get update"
@@ -23,7 +20,7 @@
       state: present
       update_cache: yes
 
-  - name: Install Nodejs
+  - name: Install nodejs
     apt:
       name: nodejs
       state: present
