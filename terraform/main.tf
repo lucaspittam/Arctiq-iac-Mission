@@ -71,7 +71,6 @@ tags = {
 }
 
 # Route Table
-
 resource "aws_route_table" "route_table" {
  vpc_id = aws_vpc.my_vpc.id
 
