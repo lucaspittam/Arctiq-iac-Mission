@@ -112,12 +112,12 @@
   - name: Sequelize Cli Command( db:create )
     command:
       chdir: /home/ubuntu/repo
-      cmd: sequelize db:create
+      cmd: sudo sequelize db:create
 
   - name: Sequelize Cli Command( db:migrate )
     command:
       chdir: /home/ubuntu/repo
-      cmd: sequelize db:migrate
+      cmd: sudo sequelize db:migrate
 
   - name: Go to Repo & Start Server
     command:
