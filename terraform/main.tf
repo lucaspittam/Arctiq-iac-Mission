@@ -206,7 +206,7 @@ resource "aws_lb_target_group_attachment" "tg_attach2" {
   depends_on = [aws_instance.web2]
 }
 
-# Create listener
+# Create listene
 resource "aws_lb_listener" "listener_lb" {
   load_balancer_arn = aws_lb.project_alb.arn
   port              = "80"
